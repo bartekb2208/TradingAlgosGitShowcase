@@ -1,0 +1,122 @@
+==========================================================================
+  FVT V1 — engine v0.1.0
+  generated 2026-08-09T18:21:52.938288+00:00
+==========================================================================
+
+ES Test
+  round_trips             : 2885
+  win_rate_pct            : 32.5823
+  gross_usd               : -521,975.9946
+  commission_usd          : 129,580.0000
+  net_usd                 : -651,555.9946
+  expectancy_usd          : -225.8426
+  gross_expectancy_usd    : -180.9276
+  avg_win_usd             : 1,321.4444
+  avg_loss_usd            : -973.6317
+  payoff_ratio            : 1.3572
+  profit_factor           : 0.6559
+  max_drawdown_usd        : 654,011.4348
+  per_trade_sharpe        : -0.2079
+  ambiguous_pct           : 0.0347
+
+NQ Test
+  round_trips             : 58
+  win_rate_pct            : 44.8276
+  gross_usd               : 7,015.0000
+  commission_usd          : 505.0000
+  net_usd                 : 6,510.0000
+  expectancy_usd          : 112.2414
+  gross_expectancy_usd    : 120.9483
+  avg_win_usd             : 1,491.1538
+  avg_loss_usd            : -1,008.1250
+  payoff_ratio            : 1.4791
+  profit_factor           : 1.2018
+  max_drawdown_usd        : 8,155.0000
+  per_trade_sharpe        : 0.0895
+  ambiguous_pct           : 0.0000
+
+ES Validation
+  not run
+
+NQ Validation
+  not run
+
+BREAKDOWN BY PHASE
+  phase=1: n=1550 PF=0.622267463952561 exp=$-255.6465795532384
+  phase=2: n=1335 PF=0.6977527296785349 exp=$-191.2387987435485
+
+BREAKDOWN BY STRUCTURE
+  structure=BOS: n=1605 PF=0.641196677021021 exp=$-240.22461484160203
+  structure=MSB: n=1280 PF=0.6752748151959935 exp=$-207.80897485108252
+
+BREAKDOWN BY ATTEMPT_N
+  attempt_n=1: n=1906 PF=0.6339366099484555 exp=$-246.28882943602707
+  attempt_n=2: n=711 PF=0.7075923244350051 exp=$-183.9526046723613
+  attempt_n=3: n=210 PF=0.6951160909225303 exp=$-186.58556002880044
+  attempt_n=4: n=47 PF=0.7096780930157532 exp=$-176.71450918562874
+  attempt_n=5: n=7 PF=0.42813970510150545 exp=$-367.04560035853905
+  attempt_n=6: n=4 PF=0.47561175020361796 exp=$-320.328765689502
+
+FALSIFIERS
+  [                                          PASS]  [VALIDITY GATE ]  F1_sample_adequacy
+                                                          >= 300 trades
+                                                          split: ES Test
+                                                          value: 2885
+  [                                          FAIL]  [VALIDITY GATE ]  F2_cost_floor
+                                                          gross expectancy > 2 x round-turn commission ($10.00)
+                                                          split: ES Test
+                                                          value: -180.9275544645258
+                                                          note: ADVERSE: gross expectancy is negative before any costs are applied -- this is not a borderline cost-floor miss, it corroborates F3's PF<1.10 finding rather than being merely uninterpretable
+  [                                          FAIL]  [  CLAIM TEST  ]  F3_core_claim
+                                                          net profit factor >= 1.10
+                                                          split: ES Test
+                                                          value: 0.6559374356018367
+                                                          note: HARD falsifier. Failing this ends the track — no sweep.
+  [                                          FAIL]  [  CLAIM TEST  ]  F4_win_rate
+                                                          win rate reported against the 1.5R breakeven line
+                                                          split: ES Test
+                                                          value: 32.582322357019066
+                                                          breakeven_pct: 40.0
+  [                                          PASS]  [  CLAIM TEST  ]  F5_phase_discrimination
+                                                          phase 1 and phase 2 expectancies must be distinguishable (>25% relative gap), else the fair-value premise does no work
+                                                          split: ES Test
+                                                          phase1_expectancy: -255.6465795532384
+                                                          phase2_expectancy: -191.2387987435485
+                                                          relative_gap_pct: 25.194071018766355
+                                                          threshold_pct: 25.0
+                                                          margin_pp: 0.1940710187663548
+                                                          note: BOTH PHASES LOSE MONEY (phase 1: $-255.65, phase 2: $-191.24) -- distinguishability does NOT imply the fair-value premise works. The relative gap only means phase 2 loses LESS than phase 1, not that either phase is profitable. This verdict must NOT be read as support for the strategy.
+  [                                          PASS]  [VALIDITY GATE ]  F6_fill_fidelity
+                                                          ambiguous-bar rate < 20% AND tick arbitration agrees in sign
+                                                          split: NQ Test
+                                                          ambiguous_pct: 0.0
+                                                          sign_agrees: True
+                                                          flipped_to_target: 0
+  [      NOT EVALUABLE (validation split not run)]  [  CLAIM TEST  ]  F7_es_validation
+                                                          ES Validation: PF >= 1.05 and expectancy > 0
+  [      NOT EVALUABLE (validation split not run)]  [  CLAIM TEST  ]  F8_nq_validation
+                                                          NQ Validation: PF >= 1.05 and expectancy > 0
+
+COUNTERS
+  ES_Test: skipped_not_warm=0, skipped_phase_gate=4076, skipped_no_size=13, windows_no_anchor=78, bars=1964821, structure_events=98462, signals=3185, ambiguous_trades=1, skipped_in_position=300, skipped_no_next_bar=0
+  NQ_Test: skipped_not_warm=0, skipped_phase_gate=80, skipped_no_size=0, windows_no_anchor=0, bars=8970, structure_events=763, signals=71, ambiguous_trades=0, skipped_in_position=13, skipped_no_next_bar=0
+  Data: es_dropped_misaligned_days=202
+
+
+==========================================================================
+  CAVEATS
+  * ES is an ADJACENT-INSTRUMENT PROXY. JJ's claim is NQ-specific.
+    A pass on ES is evidence about the entry model, not proof about NQ.
+  * Ambiguous bars resolve to the STOP. The ambiguous_pct figure bounds
+    how much of the result rests on that assumption.
+  * [VALIDITY GATE] (F1, F2, F6): failing one means the result is
+    UNINTERPRETABLE in general — a different thing from the strategy
+    being bad. EXCEPTION: F2 failing ADVERSELY (gross expectancy <= 0,
+    see its `note`) is not an interpretability problem — a negative
+    edge before any costs are even applied is unambiguous, and it
+    CORROBORATES a failing F3 rather than retracting it.
+    [CLAIM TEST] (F3, F4, F5, F7, F8): these judge the strategy itself.
+  * The NQ validation split grows with each yfinance harvest. Until it
+    reaches the minimum session count its verdict is NOT EVALUABLE,
+    which is not the same as a weak pass.
+==========================================================================

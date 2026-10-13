@@ -1,0 +1,22 @@
+============================================================================================
+  VR TIER 1 — reward:risk gate + zone-relative stop cap (ES only)
+  engine v0.1.0   sessions: 5 (excluded ['2026-07-10'] — data quality, not P&L)
+============================================================================================
+                 config  fills    n  forced   win%  gross tk/tr      net $    avgWin   avgLoss      PF     maxDD   hold s
+--------------------------------------------------------------------------------------------
+trail3.0 no gates            6    6       1  50.0%        5.667     395.00    274.17   -142.50   1.924    427.50    419.6
+trail3.0 +RR1.0              2    2       1 100.0%       24.000     590.00    295.00      0.00     inf     -0.00   1890.2
+trail3.0 +stopcap3           6    6       1  50.0%        5.667     395.00    274.17   -142.50   1.924    427.50    419.6
+trail3.0 +RR1.0+cap3         3    3       1  66.7%       14.000     510.00    295.00    -80.00   7.375     80.00   1078.5
+trail5.0 no gates            5    5       1  60.0%       25.400    1562.50    749.17   -342.50   3.281    685.00   2497.3
+trail5.0 +RR1.0+cap3         3    3       1  66.7%       19.667     722.50    501.25   -280.00   3.580    280.00   2387.9
+============================================================================================
+  SURVIVORSHIP FIX ACTIVE: positions still open at session end are force-closed
+  at the last bid and counted ('forced' column). Previously they vanished from
+  the stats entirely, biasing results toward whichever config held longest.
+  fills MUST equal n for the sample to be complete.
+  Breakeven needs gross > +0.40 ticks/trade.
+  EXCLUSION CRITERION (objective, declared before the run):
+    drop any session with > 5.0% of L3 book updates crossed.
+    {'2026-07-10': '82.8% of L3 book updates crossed (ask <= bid)'}
+============================================================================================

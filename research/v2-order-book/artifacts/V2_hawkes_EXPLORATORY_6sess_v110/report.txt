@@ -1,0 +1,72 @@
+==============================================================================
+  V2 HAWKES — 6 exploratory ES sessions — engine v1.1.0
+  research-notes entry: divergence >= N bps AND OBI > 0.30 AND lambda-exhaustion
+==============================================================================
+
+--- divergence 3.0bps (SPEC) ---
+  signals fired        : 0
+  entries filled       : 0
+  entries cancelled    : 0
+  ROUND TRIPS          : 0
+  -> NO TRADES. PF, Sharpe, Calmar and drawdown are UNDEFINED,
+     not zero. There is no return series to compute them from.
+
+--- divergence 1.0bps ---
+  signals fired        : 5
+  entries filled       : 5
+  entries cancelled    : 0
+  n                     : 5
+  win_rate_pct          : 40.0000
+  gross_usd             : -175.0000
+  commission_usd        : 25.0000
+  net_usd               : -200.0000
+  gross_ticks_per_trade : -2.8000
+  net_per_trade_usd     : -40.0000
+  avg_win_usd           : 7.5000
+  avg_loss_usd          : -71.6667
+  payoff_ratio          : 0.1047
+  profit_factor         : 0.0698
+  expectancy_usd        : -40.0000
+  max_drawdown_usd      : 215.0000
+  calmar_like           : -0.9302
+  per_trade_sharpe      : -0.7120
+  annualised_sharpe_EST : -10.3177
+  trades_per_year_EST   : 210.0000
+  median_hold_ms        : 2,002.1458
+  exits_target          : 2
+  exits_timeout         : 3
+
+--- divergence 0.5bps ---
+  signals fired        : 65
+  entries filled       : 57
+  entries cancelled    : 8
+  n                     : 57
+  win_rate_pct          : 47.3684
+  gross_usd             : -450.0000
+  commission_usd        : 285.0000
+  net_usd               : -735.0000
+  gross_ticks_per_trade : -0.6316
+  net_per_trade_usd     : -12.8947
+  avg_win_usd           : 7.5000
+  avg_loss_usd          : -31.2500
+  payoff_ratio          : 0.2400
+  profit_factor         : 0.2160
+  expectancy_usd        : -12.8947
+  max_drawdown_usd      : 750.0000
+  calmar_like           : -0.9800
+  per_trade_sharpe      : -0.4832
+  annualised_sharpe_EST : -23.6409
+  trades_per_year_EST   : 2,394.0000
+  median_hold_ms        : 2,000.2179
+  exits_target          : 27
+  exits_timeout         : 30
+
+==============================================================================
+CAVEATS ON THE RATIOS
+  * annualised_sharpe_EST scales a per-trade Sharpe by sqrt(trades/yr)
+    extrapolated from 6 sessions. It assumes IID trades and a constant
+    trade rate. Treat as an order of magnitude, NOT an estimate.
+  * calmar_like = net / max drawdown over 6 sessions. A real Calmar is
+    annual return / max DD over years. Not comparable to published figures.
+  * Breakeven needs gross > +0.40 ticks/trade (commission = $5.00 RT).
+==============================================================================

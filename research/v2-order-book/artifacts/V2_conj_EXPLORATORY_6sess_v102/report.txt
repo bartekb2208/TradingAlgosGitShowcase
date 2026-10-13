@@ -1,0 +1,23 @@
+====================================================================
+  V2 conjunction   engine v1.0.2
+  sessions: 6  (2026-07-06 .. 2026-07-13)
+====================================================================
+  exit_mode         : convergence
+  divergence        : 3.0 bps
+  cooldown          : 180 s
+  RTH only          : True (09:30:00-16:00:00 ET)
+  commission        : $2.50/side
+--------------------------------------------------------------------
+  deltas fed        : 67,406,393
+  trades fed        : 1,899,813
+  entries signaled  : 274
+  entries FILLED    : 135   (49.3% fill rate)
+  entries cancelled : 139  (unfilled after 300 ms)
+  timeout exits     : 48
+  blocked ticks (rth/cool/spread): 0 / 859,665 / 251,286   [duty cycle, NOT suppressed signals]
+  ROUND TRIPS       : 135  (wins 87, 64.4%)
+  exits target/timeout: 87 / 48
+  commission paid   : $675.00
+  NET realized PnL  : $-787.50
+  profit factor     : 0.453
+====================================================================

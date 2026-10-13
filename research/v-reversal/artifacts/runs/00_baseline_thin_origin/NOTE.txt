@@ -1,0 +1,1 @@
+note: baseline = marketable entry + thin_origin target + v_low stop. PF 0.399, gross -12.20 tk/trade, F5 FAIL.

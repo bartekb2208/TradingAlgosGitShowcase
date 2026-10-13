@@ -1,0 +1,247 @@
+{
+  "engine_version": "0.1.0",
+  "generated_utc": "2026-08-03T23:06:20.960384+00:00",
+  "config_es": {
+    "thin_min_ticks": 8,
+    "thin_max_secs": 60.0,
+    "thin_vpt_frac": 0.7,
+    "cons_max_ticks": 8,
+    "cons_min_secs": 60.0,
+    "cons_max_secs": 1800.0,
+    "blowoff_window_ms": 1000,
+    "blowoff_mult": 3.0,
+    "blowoff_min_contracts": 250,
+    "trap_levels": 5,
+    "trap_pctile": 0.99,
+    "trap_hist": 4000,
+    "trap_min_hist": 500,
+    "trap_min_frac": 0.5,
+    "retrace_pct": 0.9,
+    "speed_ratio": 1.5,
+    "entry_mode": "marketable",
+    "stop_mode": "wide_v_low",
+    "max_stop_ticks": null,
+    "target_mode": "thin_origin_buffered",
+    "target_buffer_ticks": 2,
+    "passive_entry_frac": 0.75,
+    "entry_ttl_secs": 60.0,
+    "rth_only": true,
+    "cooldown_ns": 0,
+    "commission_per_side": 2.5,
+    "max_positions": 1
+  },
+  "nq_threshold_overrides": {
+    "cons_max_ticks": 26,
+    "thin_min_ticks": 26,
+    "trap_levels": 16
+  },
+  "detection": {
+    "ES": {
+      "fwd_mean_bps": 0.9203219070564361,
+      "fwd_median_bps": 0.9840421170026077,
+      "fwd_p10_bps": -1.2851522326599811,
+      "fwd_p90_bps": 3.454555751609594,
+      "symbol": "ES",
+      "sessions": 6,
+      "structures": 9,
+      "rate_per_session": 1.5,
+      "fwd_mean_ticks": 2.7777777777777777,
+      "fwd_median_ticks": 3.0,
+      "fwd_pct_up": 55.55555555555556,
+      "fwd_p10": -3.8999999999999995,
+      "fwd_p90": 10.4,
+      "per_session": {
+        "2026-07-06": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-07-07": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-07-08": {
+          "structures": 1,
+          "mean_fwd": 9.5
+        },
+        "2026-07-09": {
+          "structures": 2,
+          "mean_fwd": 11.0
+        },
+        "2026-07-10": {
+          "structures": 3,
+          "mean_fwd": -3.5
+        },
+        "2026-07-13": {
+          "structures": 3,
+          "mean_fwd": 1.3333333333333333
+        }
+      }
+    },
+    "NQ": {
+      "fwd_mean_bps": -0.17289384153549497,
+      "fwd_median_bps": 0.2794492985822606,
+      "fwd_p10_bps": -4.5101101203458285,
+      "fwd_p90_bps": 3.922477762931556,
+      "symbol": "NQ",
+      "sessions": 23,
+      "structures": 17,
+      "rate_per_session": 0.7391304347826086,
+      "fwd_mean_ticks": -1.8235294117647058,
+      "fwd_median_ticks": 3.0,
+      "fwd_pct_up": 52.94117647058824,
+      "fwd_p10": -50.39999999999999,
+      "fwd_p90": 41.2,
+      "per_session": {
+        "2026-04-06": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-07": {
+          "structures": 1,
+          "mean_fwd": -12.5
+        },
+        "2026-04-08": {
+          "structures": 1,
+          "mean_fwd": -19.5
+        },
+        "2026-04-09": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-10": {
+          "structures": 1,
+          "mean_fwd": 50.5
+        },
+        "2026-04-13": {
+          "structures": 1,
+          "mean_fwd": -103.0
+        },
+        "2026-04-14": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-15": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-16": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-17": {
+          "structures": 5,
+          "mean_fwd": -2.2
+        },
+        "2026-04-20": {
+          "structures": 1,
+          "mean_fwd": -2.5
+        },
+        "2026-04-21": {
+          "structures": 2,
+          "mean_fwd": 58.25
+        },
+        "2026-04-22": {
+          "structures": 1,
+          "mean_fwd": 8.5
+        },
+        "2026-04-23": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-24": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-27": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-28": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-04-29": {
+          "structures": 2,
+          "mean_fwd": 10.5
+        },
+        "2026-04-30": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-05-01": {
+          "structures": 1,
+          "mean_fwd": 3.5
+        },
+        "2026-05-04": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-05-05": {
+          "structures": 0,
+          "mean_fwd": null
+        },
+        "2026-05-06": {
+          "structures": 1,
+          "mean_fwd": -82.5
+        }
+      }
+    }
+  },
+  "execution": {
+    "round_trips": 5,
+    "win_rate_pct": 60.0,
+    "gross_usd": -762.5,
+    "commission_usd": 25.0,
+    "net_usd": -787.5,
+    "gross_ticks_per_trade": -12.2,
+    "expectancy_usd": -157.5,
+    "avg_win_usd": 174.16666666666666,
+    "avg_loss_usd": -655.0,
+    "payoff_ratio": 0.2659033078880407,
+    "profit_factor": 0.3988549618320611,
+    "max_drawdown_usd": 1310.0,
+    "calmar_like": -0.601145038167939,
+    "per_trade_sharpe": -0.33891055977945655,
+    "annualised_sharpe_EST": -4.911280605026062,
+    "trades_per_year_EST": 210.0,
+    "median_hold_ms": 59852.5424
+  },
+  "falsifiers": {
+    "F1_sample_adequacy": {
+      "rule": "rate x sealed sessions >= 100",
+      "projected": 59.0,
+      "detail": "ES 28x1.50 + NQ 23x0.74",
+      "verdict": "FAIL"
+    },
+    "F2_direction_ES": {
+      "rule": "mean forward move > 0 on ES exploratory",
+      "value": 2.7777777777777777,
+      "verdict": "PASS"
+    },
+    "F3_rate_stability": {
+      "rule": "ES/NQ structure-rate ratio within 3x (price-scaled thresholds)",
+      "value": 2.03,
+      "verdict": "PASS"
+    },
+    "F4_direction_cross_instrument": {
+      "rule": "ES and NQ mean forward move share a sign (measured in BPS \u2014 raw ticks are not comparable across price levels)",
+      "es_mean_bps": 0.9203219070564361,
+      "nq_mean_bps": -0.17289384153549497,
+      "es_median_bps": 0.9840421170026077,
+      "nq_median_bps": 0.2794492985822606,
+      "es_mean": 2.7777777777777777,
+      "nq_mean": -1.8235294117647058,
+      "es_median": 3.0,
+      "nq_median": 3.0,
+      "es_pct_up": 55.55555555555556,
+      "nq_pct_up": 52.94117647058824,
+      "verdict": "FAIL",
+      "note": "Means diverge on tail events at this n; medians and hit-rates are the more robust comparison and are reported alongside."
+    },
+    "F5_cost_floor": {
+      "rule": "gross > +0.40 ticks/trade (commission $5.00 RT / $12.50 per tick)",
+      "value": -12.2,
+      "verdict": "FAIL"
+    }
+  }
+}

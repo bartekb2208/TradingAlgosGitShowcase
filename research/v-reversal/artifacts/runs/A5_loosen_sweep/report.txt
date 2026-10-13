@@ -1,0 +1,16 @@
+================================================================================================
+  VR LOOSENING SWEEP — does quality survive as structure count rises?
+  ES 5 sessions (07-10 excluded, crossed book) | NQ 23 sessions (price-scaled, never tuned on)
+================================================================================================
+               level |  ES n  ES/sess   ES bps  ES %up |  NQ n  NQ/sess   NQ bps  NQ %up |   verdict
+------------------------------------------------------------------------------------------------
+  L0_tight (current) |     6     1.20    1.956   66.7% |    17     0.74   -0.173   52.9% |  baseline
+             L1_mild |     7     1.40    0.947   71.4% |    16     0.70    0.439   68.8% |    reject
+           L2_medium |    13     2.60    0.290   61.5% |    17     0.74   -0.215   52.9% |    reject
+            L3_loose |    17     3.40   -0.157   47.1% |    28     1.22    0.332   50.0% |    reject
+================================================================================================
+  CRITERION (declared before the run): ACCEPT only if structures/session rises
+  AND mean forward move stays >= 70% of the tight level's, ON BOTH ES AND NQ.
+  NQ is the arbiter — the loosened detector has never seen it.
+  Forward move is in BPS: raw ticks are not comparable across ES and NQ.
+================================================================================================

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Compile check only. cTrader compiles each cBot from its own source inside the
+    platform; this project builds all ten together against the real cAlgo API so CI
+    can prove they still compile. Helper types are prefixed per bot (Ofm..., Tvf...,
+    Cvd...) precisely so they can share one assembly without name clashes.
+    ExcludeAssets="build" skips the package's .algo bundling targets.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <CheckEolTargetFramework>false</CheckEolTargetFramework>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="cTrader.Automate" Version="1.0.17" ExcludeAssets="build" />
+  </ItemGroup>
+</Project>

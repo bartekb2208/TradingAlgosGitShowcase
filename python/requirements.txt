@@ -1,0 +1,21 @@
+# Pinned to the exact versions the published results and selftests were produced with (Python 3.14).
+
+# MR V1 (MeanReversion1.py, crossval.py, breadth_test.py), FVT V1 (fvt/), shared tooling
+numpy==2.5.1
+pandas==3.0.5
+matplotlib==3.11.1
+
+# V2 and VR (v2/, vr/): order-book research on NautilusTrader.
+# nautilus_trader is pinned EXACTLY. research/v2-order-book/DESIGN.md documents API behaviour
+# verified against this version (pyo3-vs-Cython loader semantics, the book-only MBO loader,
+# add_venue(queue_position=...), and the NETTING positions_closed() undercount). A minor bump
+# can change any of them silently. Python 3.14 is newer than the range nautilus_trader is
+# officially tested against; wheels install and import cleanly, but suspect it first if a
+# backtest misbehaves in a way the code can't explain.
+nautilus_trader==1.230.0
+databento==0.82.0
+pyarrow==25.0.0
+
+# FVT only: fvt_data.harvest_nq_yfinance() grows a cache of NQ 1-minute bars (Yahoo serves
+# only the trailing ~30 days at that interval, so it accumulates; it can't backfill).
+yfinance==1.5.2

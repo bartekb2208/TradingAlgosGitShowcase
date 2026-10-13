@@ -1,0 +1,22 @@
+============================================================================================
+  VR RR GATE — 0.75 vs 1.00 vs none, on EXPLORATORY + DEV (23 ES sessions)
+  engine v0.1.0   sessions: 23 (excluded ['2026-07-10'] — data quality, not P&L)
+============================================================================================
+                 config  fills    n  forced   win%  gross tk/tr      net $    avgWin   avgLoss      PF     maxDD   hold s
+--------------------------------------------------------------------------------------------
+    trail3.0 RR none        17   17       2  41.2%        0.647      52.50    361.07   -247.50   1.021   2372.50    419.6
+    trail3.0 RR 0.75         6    6       2  50.0%       -1.833    -167.50    203.33   -259.17   0.785    757.50    503.9
+    trail3.0 RR 1.00         5    5       2  60.0%        0.000     -25.00    203.33   -317.50   0.961    615.00   1000.2
+    trail5.0 RR none        16   16       2  37.5%       -2.438    -567.50    474.17   -341.25   0.834   3392.50    962.7
+    trail5.0 RR 0.75         6    6       2  50.0%        3.167     207.50    340.83   -271.67   1.255    795.00   1977.3
+    trail5.0 RR 1.00         5    5       2  60.0%        6.000     350.00    340.83   -336.25   1.520    652.50   3947.0
+============================================================================================
+  SURVIVORSHIP FIX ACTIVE: positions still open at session end are force-closed
+  at the last bid and counted ('forced' column). Previously they vanished from
+  the stats entirely, biasing results toward whichever config held longest.
+  fills MUST equal n for the sample to be complete.
+  Breakeven needs gross > +0.40 ticks/trade.
+  EXCLUSION CRITERION (objective, declared before the run):
+    drop any session with > 5.0% of L3 book updates crossed.
+    {'2026-07-10': '82.8% of L3 book updates crossed (ask <= bid)'}
+============================================================================================

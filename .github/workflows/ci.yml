@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  cbots:
+    name: cBots compile (cAlgo.API, net6.0)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Build all ten cBots against cTrader.Automate
+        run: dotnet build cbots -nologo
+
+  python:
+    name: Python selftests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+          cache: pip
+          cache-dependency-path: python/requirements.txt
+      - name: Install pinned dependencies
+        run: pip install -r python/requirements.txt
+      - name: Byte-compile every module
+        run: python -m compileall -q python tools
+      - name: Data-free selftests
+        working-directory: python
+        run: |
+          set -e
+          for m in MeanReversion1.py mt5_adapter.py fvt/fvt_core.py fvt/fvt_stats.py \
+                   vr/vr_core.py vr/vr_detect.py vr/vr_strategy.py v2/v2_core.py; do
+            echo "::group::$m"
+            python "$m" --selftest
+            echo "::endgroup::"
+          done
+      - name: MR V1 end to end on synthetic data (smoke test, not a result)
+        working-directory: ${{ runner.temp }}
+        run: python "$GITHUB_WORKSPACE/python/MeanReversion1.py" --generate-sample-data --no-plot
+      - name: Charts regenerate
+        run: python tools/make_charts.py && python tools/make_banner.py

@@ -1,0 +1,53 @@
+==============================================================================================
+  VR STAGE-6 MEASUREMENT — does the DOC'S trade exist after our ARMED events?
+  23 sessions (exploratory minus 07-10 + DEV). OOS UNTOUCHED.
+  TTL 1800s   break = cons_hi + 1 tick   invalidation = new low < v_low
+==============================================================================================
+  ARMED events: 24    (1.04/session)
+
+  WHAT HAPPENS AFTER ARMED:
+               broke :  12  ( 50.0%)
+     tested_no_break :   1  (  4.2%)
+      reclaimed_only :  10  ( 41.7%)
+         invalidated :   1  (  4.2%)
+
+----------------------------------------------------------------------------------------------
+  STRUCTURE GEOMETRY — does the zone sit BELOW the origin of the thin move?
+  The doc's setup requires it: the gap IS the room the trade travels into,
+  and thin_origin IS the target. cons_hi >= thin_origin => no trade exists.
+----------------------------------------------------------------------------------------------
+  ARMED events with thin_origin > cons_hi (doc geometry intact) :   7 / 24 ( 29.2%)
+  of the 12 that BROKE — geometry intact :   2   VIOLATED (target under entry) :  10
+
+----------------------------------------------------------------------------------------------
+  RISK GEOMETRY — the doc's NARROW stop vs our forced WIDE stop
+----------------------------------------------------------------------------------------------
+  wide stop  (armed -> v_low)   n= 24  median   17.0 tk  mean   30.8 tk = $  212.50
+  NARROW stop (break -> cons_lo) n= 12  median   11.5 tk  mean   14.6 tk = $  143.75
+  reward:risk (geometry-intact)  n=  2  median   1.04     mean   1.04
+
+----------------------------------------------------------------------------------------------
+  FORWARD MOVE: entering at ARMED (what we tested) vs at the BREAK
+----------------------------------------------------------------------------------------------
+   horizon   ARMED mean   ARMED med  ARMED %up   BREAK mean   BREAK med  BREAK %up
+       30s        3.188       3.000      62.5%        1.750       1.000      58.3%
+      120s        3.021       4.250      66.7%       -0.167       4.000      58.3%
+      300s        1.125       0.750      50.0%       -1.333       3.500      58.3%
+
+----------------------------------------------------------------------------------------------
+  THE DOC'S TRADE, SIMULATED: enter on break, stop at cons_lo, target thin_origin
+  GEOMETRY-INTACT STRUCTURES ONLY (n=2 of 24 armed events).
+  (net of $5.00 round-trip commission = 0.40 ticks)
+----------------------------------------------------------------------------------------------
+  trades 2   win 50.0%   PF 0.915   net -0.8 tk = $-10.00
+  mean -0.400 tk/trade   median -0.400   avgWin +8.60   avgLoss -9.40
+  maxDD 9.4 tk   median hold 7s   exits {'stop': 1, 'target': 1, 'session_end': 0}
+
+==============================================================================================
+  DECISION RULE (declared before the run):
+    <40% of ARMED events break, OR forward move from break <= 0
+      -> the doc's trade is not in this data either. CLOSE VR.
+    high break rate + tight stop + positive expectancy
+      -> PARK with a documented reason to return. Do NOT build a strategy on n<30.
+  This is a MEASUREMENT on already-burned sessions. The 9 OOS sessions are untouched.
+==============================================================================================

@@ -1,0 +1,71 @@
+==========================================================================
+  VR V1 STATISTICS — engine v0.1.0
+  generated 2026-08-03T23:06:20.960384+00:00
+==========================================================================
+
+DETECTION
+  ES: 9 structures over 6 sessions = 1.50/session
+      fwd30s ticks: mean +2.778  median +3.000  %up 55.6  p10 -3.9  p90 +10.4
+      fwd30s BPS  : mean +0.920  median +0.984  p10 -1.29  p90 +3.45   <- the cross-instrument comparison
+  NQ: 17 structures over 23 sessions = 0.74/session
+      fwd30s ticks: mean -1.824  median +3.000  %up 52.9  p10 -50.4  p90 +41.2
+      fwd30s BPS  : mean -0.173  median +0.279  p10 -4.51  p90 +3.92   <- the cross-instrument comparison
+
+EXECUTION
+  round_trips             : 5
+  win_rate_pct            : 60.0000
+  gross_usd               : -762.5000
+  commission_usd          : 25.0000
+  net_usd                 : -787.5000
+  gross_ticks_per_trade   : -12.2000
+  expectancy_usd          : -157.5000
+  avg_win_usd             : 174.1667
+  avg_loss_usd            : -655.0000
+  payoff_ratio            : 0.2659
+  profit_factor           : 0.3989
+  max_drawdown_usd        : 1,310.0000
+  calmar_like             : -0.6011
+  per_trade_sharpe        : -0.3389
+  annualised_sharpe_EST   : -4.9113
+  trades_per_year_EST     : 210.0000
+  median_hold_ms          : 59,852.5424
+
+FALSIFIERS
+  [              FAIL]  F1_sample_adequacy
+                        rate x sealed sessions >= 100
+                        projected: 59.0
+                        detail: ES 28x1.50 + NQ 23x0.74
+  [              PASS]  F2_direction_ES
+                        mean forward move > 0 on ES exploratory
+                        value: 2.7777777777777777
+  [              PASS]  F3_rate_stability
+                        ES/NQ structure-rate ratio within 3x (price-scaled thresholds)
+                        value: 2.03
+  [              FAIL]  F4_direction_cross_instrument
+                        ES and NQ mean forward move share a sign (measured in BPS — raw ticks are not comparable across price levels)
+                        es_mean_bps: 0.9203219070564361
+                        nq_mean_bps: -0.17289384153549497
+                        es_median_bps: 0.9840421170026077
+                        nq_median_bps: 0.2794492985822606
+                        es_mean: 2.7777777777777777
+                        nq_mean: -1.8235294117647058
+                        es_median: 3.0
+                        nq_median: 3.0
+                        es_pct_up: 55.55555555555556
+                        nq_pct_up: 52.94117647058824
+                        note: Means diverge on tail events at this n; medians and hit-rates are the more robust comparison and are reported alongside.
+  [              FAIL]  F5_cost_floor
+                        gross > +0.40 ticks/trade (commission $5.00 RT / $12.50 per tick)
+                        value: -12.2
+
+==========================================================================
+  CAVEATS
+  * annualised_sharpe_EST scales a per-trade Sharpe by sqrt(trades/yr)
+    extrapolated from a handful of sessions. Order of magnitude only.
+  * calmar_like = net / max drawdown over the sampled sessions, NOT an
+    annual return / max DD over years. Not comparable to published figures.
+  * NQ tick thresholds are price-scaled (8 -> 26 ticks). Raw tick counts
+    would make NQ look rarer purely as a unit artifact.
+  * NQ has now been READ as the F3/F4 detector control. It can no longer
+    serve as a clean P&L out-of-sample set.
+==========================================================================

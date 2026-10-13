@@ -1,0 +1,16 @@
+========================================================================================
+  VR CONTROLS — is the edge beta, a regime, or a precise moment?
+  real entries n=6   actual P&L=$1,957.50   (trail 5.0x each trade's own zone width)
+  2000 iterations per null.  Buy-and-hold same sessions: $1,625.00
+========================================================================================
+                    null     mean $   median $        p05        p95  %profit  p-value
+----------------------------------------------------------------------------------------
+   SHIFTED (+/-2-30 min)     757.43     795.00    -605.00    2108.12    79.2%    0.074
+        RANDOM (uniform)    -540.36    -617.50   -2392.50    1445.00    30.8%    0.018
+========================================================================================
+  RANDOM rejected  => the result is NOT simply long exposure to a rising market.
+  SHIFTED is the hard null: if nearby times are just as profitable, the FSM's
+  tick-level precision is not earning its keep and the signal is finding a
+  favourable REGIME rather than a favourable MOMENT.
+  Power is very low at n=6 real trades: this can reject, not confirm.
+========================================================================================
